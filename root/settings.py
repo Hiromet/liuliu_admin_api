@@ -64,7 +64,10 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
+
 
 TEMPLATES = [
     {
@@ -91,11 +94,14 @@ WSGI_APPLICATION = 'root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'my_store_db',         # El nombre de la base de datos que creaste
-        'USER': 'admin',       # El usuario que creaste
-        'PASSWORD': 'admin', # La contraseña que estableciste
-        'HOST': 'localhost',           # Host local
-        'PORT': '5432',                # Puerto predeterminado de PostgreSQL
+        'NAME': 'store:main',  # Nombre de la base de datos
+        'USER': 'ppord4',      # Nombre de usuario
+        'PASSWORD': 'xau_qD4GjlKThH0dObCFbHJk58Ip9iXSL9fB',  # Contraseña
+        'HOST': 'us-east-1.sql.xata.sh',  # Host de la base de datos
+        'PORT': '5432',  # Puerto (el valor predeterminado de PostgreSQL)
+        'OPTIONS': {
+            'sslmode': 'require',  # Habilitar SSL
+        },
     }
 }
 
