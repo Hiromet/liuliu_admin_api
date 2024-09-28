@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
+from dotenv import load_dotenv
 
-
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -94,13 +96,14 @@ WSGI_APPLICATION = 'root.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'store:main',  # Nombre de la base de datos
-        'USER': 'ppord4',      # Nombre de usuario
-        'PASSWORD': 'xau_qD4GjlKThH0dObCFbHJk58Ip9iXSL9fB',  # Contraseña
-        'HOST': 'us-east-1.sql.xata.sh',  # Host de la base de datos
-        'PORT': '5432',  # Puerto (el valor predeterminado de PostgreSQL)
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': os.environ.get('DB_PORT', '5432'),
         'OPTIONS': {
-            'sslmode': 'require',  # Habilitar SSL
+            # Solo usa SSL si la variable de entorno DB_SSLMODE está configurada
+            'sslmode': os.environ.get('DB_SSLMODE', 'prefer'),
         },
     }
 }
