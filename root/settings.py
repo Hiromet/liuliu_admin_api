@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'apps.clients',
-    'apps.products'
+    'apps.products',
     'apps.sales'
 ]
 
